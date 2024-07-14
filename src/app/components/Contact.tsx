@@ -53,7 +53,7 @@ function Contact() {
         <div className="w-24 mx-auto h-2 bg-green-500 rounded-full -rotate-6"></div>
       </motion.h2>
       <ToastContainer />
-      <div className=" max-w-4xl mt-10 mx-auto p-16 mb-5">
+      <div className=" max-w-4xl mt-10 mx-auto md:p-16 mb-5">
         <motion.form
           ref={form}
           onSubmit={handleSubmit}
@@ -67,14 +67,14 @@ function Contact() {
           }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center w-full">
+          <div className="mx-3 px-3 flex flex-col md:flex-row items-center justify-center w-full">
             <input
               type="text"
               id="name"
               name="user_name"
               required
               placeholder="Name"
-              className="mt-1  p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base mr-3 "
+              className="mt-1 w-full md:w-auto p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base md:mr-3 "
             />
 
             <input
@@ -83,7 +83,7 @@ function Contact() {
               name="user_email"
               required
               placeholder="Email"
-              className="mt-1  p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base ml-3"
+              className="mt-6 md:mt-0 w-full md:w-auto p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base md:ml-3 "
             />
           </div>
           <textarea
@@ -91,7 +91,7 @@ function Contact() {
             name="message"
             required
             placeholder="Your message..."
-            className="h-40 w-2/3 p-5 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
+            className="h-40 w-full md:w-2/3 p-5 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
           ></textarea>
 
           <button
@@ -108,7 +108,7 @@ function Contact() {
           <h3 className="text-sm text-white">Or send me a direct email at</h3>
           <motion.a
             href="mailto:zareenfatima3762@gmail.com"
-            className="block text-2xl  text-[#d8d8d8] text-center font-bold mt-2"
+            className="block text-lg md:text-2xl  text-[#d8d8d8] text-center font-bold mt-2"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
