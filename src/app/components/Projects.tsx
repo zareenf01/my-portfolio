@@ -13,7 +13,7 @@ function Projects() {
 
   useEffect(() => {
     const checkScreenWidth = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1100);
     };
 
     checkScreenWidth();
@@ -43,58 +43,9 @@ function Projects() {
       {isMobile ? (
         <ProjectsMob />
       ) : (
-        <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 mt-16">
-          {data.map((project, index) => {
-            return (
-              <motion.div
-                key={index}
-                className={cn(
-                  "p-2 rounded-lg mt-16 w-full h-full cursor-pointer space-y-5"
-                )}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                variants={{
-                  visible: { opacity: 1, y: -50 },
-                  hidden: { opacity: 0, y: 0 },
-                }}
-              >
-                <ProjectHover
-                  imageUrl={project.image}
-                  className="mx-3 w-full h-4/5 "
-                >
-                  <h1 className="text-white font-bold flex items-center">
-                    {project.projectName}
-                    <Link
-                      href={project.projectExternalLinks.github}
-                      className="  ml-3"
-                    >
-                      <span className="p-1">
-                        <FiGithub size={25} />
-                      </span>
-                    </Link>
-                    <Link href={project.projectLink} className="ml-5">
-                      <span className="p-1">
-                        <FiExternalLink size={25} />
-                      </span>
-                    </Link>
-                  </h1>
-                  <div className="flex items-center -mt-3 gap-2">
-                    {project.projectTech.map((tech, idx) => (
-                      <h3 key={idx} className="text-[#a1a0a0] ">
-                        {tech}
-                      </h3>
-                    ))}
-                  </div>
-                </ProjectHover>
-              </motion.div>
-            );
-          })}
-
-          <h2 className="text-white text-3xl text-bold px-5 ">MERN Stack</h2>
-          <div className="mt-10 ">
-            {MernStack.map((project, index) => {
+        <>
+          <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 mt-16">
+            {data.map((project, index) => {
               return (
                 <motion.div
                   key={index}
@@ -142,7 +93,62 @@ function Projects() {
               );
             })}
           </div>
-        </div>
+
+          <div className="mt-10">
+            <h2 className="text-white text-3xl text-bold px-5 ">MERN Stack</h2>
+            <div className="mt-10 ">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mt-10">
+                {MernStack.map((project, index) => {
+                  return (
+                    <motion.div
+                      key={index}
+                      className={cn(
+                        "p-2 rounded-lg mt-16 w-full h-full cursor-pointer space-y-5"
+                      )}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      variants={{
+                        visible: { opacity: 1, y: -50 },
+                        hidden: { opacity: 0, y: 0 },
+                      }}
+                    >
+                      <ProjectHover
+                        imageUrl={project.image}
+                        className="mx-3 w-full h-4/5 "
+                      >
+                        <h1 className="text-white font-bold flex items-center">
+                          {project.projectName}
+                          <Link
+                            href={project.projectExternalLinks.github}
+                            className="  ml-3"
+                          >
+                            <span className="p-1">
+                              <FiGithub size={25} />
+                            </span>
+                          </Link>
+                          <Link href={project.projectLink} className="ml-5">
+                            <span className="p-1">
+                              <FiExternalLink size={25} />
+                            </span>
+                          </Link>
+                        </h1>
+                        <div className="flex items-center -mt-3 gap-2">
+                          {project.projectTech.map((tech, idx) => (
+                            <h3 key={idx} className="text-[#a1a0a0] ">
+                              {tech}
+                            </h3>
+                          ))}
+                        </div>
+                      </ProjectHover>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

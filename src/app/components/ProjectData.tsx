@@ -1,6 +1,18 @@
 export const data = [
   {
     index: 1,
+    image: "/images/portfolio.png",
+    projectName: "My-Porfolio",
+    projectLink: "https://zareen-portfolio.vercel.app/",
+    projectDescription: "",
+    projectTech: ["Nextjs", "TypeScript", "Tailwind", "Framer"],
+    projectExternalLinks: {
+      github: "https://github.com/zareenf01/my-portfolio",
+      externalLink: "",
+    },
+  },
+  {
+    index: 1,
     image: "/images/Anilist.png",
     projectName: "AniList",
     projectLink: "https://zareen-anime.netlify.app/",
