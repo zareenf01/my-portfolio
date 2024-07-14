@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toast {
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  border-radius: 0.75rem !important;
+  color: white !important;
+}
