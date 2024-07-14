@@ -2,8 +2,7 @@
 
 # dependencies
 /node_modules
-/src/app/components/email.ts
-/src/app/components/ui
+/.env
 /.pnp
 .pnp.js
 .yarn/install-state.gz

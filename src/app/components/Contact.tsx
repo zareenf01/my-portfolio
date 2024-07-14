@@ -27,6 +27,7 @@ function Contact() {
         form.current.reset();
       } catch (error) {
         console.error("Failed to send message:", error);
+        toast.dismiss(loading);
         toast.error("Failed to send message, please try again.", {
           className: "toast",
         });
@@ -52,11 +53,11 @@ function Contact() {
         <div className="w-24 mx-auto h-2 bg-green-500 rounded-full -rotate-6"></div>
       </motion.h2>
       <ToastContainer />
-      <div className="max-w-4xl mt-10 mx-auto p-16 mb-5">
+      <div className=" max-w-4xl mt-10 mx-auto p-16 mb-5">
         <motion.form
           ref={form}
           onSubmit={handleSubmit}
-          className="space-y-10"
+          className="space-y-10 flex flex-col items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -66,41 +67,42 @@ function Contact() {
           }}
           transition={{ duration: 0.6 }}
         >
-          <input
-            type="text"
-            id="name"
-            name="user_name"
-            required
-            placeholder="Name"
-            className="mt-1 w-full p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
-          />
+          <div className="flex items-center justify-center w-full">
+            <input
+              type="text"
+              id="name"
+              name="user_name"
+              required
+              placeholder="Name"
+              className="mt-1  p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base mr-3 "
+            />
 
-          <input
-            type="email"
-            id="email"
-            name="user_email"
-            required
-            placeholder="Email"
-            className="mt-1 w-full p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
-          />
-
+            <input
+              type="email"
+              id="email"
+              name="user_email"
+              required
+              placeholder="Email"
+              className="mt-1  p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base ml-3"
+            />
+          </div>
           <textarea
             id="message"
             name="message"
             required
             placeholder="Your message..."
-            className="mt-1 w-full p-4 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
+            className="h-40 w-2/3 p-5 bg-transparent text-white border border-gray-500 rounded-md shadow-sm focus:outline-none text-base"
           ></textarea>
 
           <button
             type="submit"
-            className="w-full flex justify-center p-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#6c42a0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-52  flex justify-center p-4 border border-transparent rounded-md text-sm font-medium text-white bg-[#6c42a0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Send
           </button>
         </motion.form>
         <div
-          className=" flex flex-col items-center mt-10 border-t p-8 border-[#525252] border-b 
+          className=" flex flex-col items-center mt-16 border-t p-8 border-[#525252] border-b 
         "
         >
           <h3 className="text-sm text-white">Or send me a direct email at</h3>
