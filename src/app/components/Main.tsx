@@ -29,14 +29,14 @@ export default function Main() {
       variants={slideInVariants}
       ref={ref}
     >
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center ">
         <h1 className="font-bold text-4xl md:text-7xl text-white">Hey!👋</h1>
         <h1 className="font-bold text-5xl md:text-8xl text-white mt-5">
           I&apos;m Zareen
         </h1>
-        <h1 className="font-bold text-3xl md:text-5xl text-white mt-8">
+        <h1 className="flex flex-col md:block justify-center font-bold text-2xl md:text-5xl text-white mt-8">
           I am a{" "}
-          <span className="inline-block text-xl md:text-2xl align-middle ">
+          <span className="inline-block align-middle">
             <TypeEffect />
           </span>
         </h1>
