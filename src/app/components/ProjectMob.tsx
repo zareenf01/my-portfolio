@@ -10,7 +10,18 @@ const ProjectsMob = () => {
     <div className="mt-16 p-5 sm:p-0">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
         {data.map((project, index) => (
-          <div key={index} className="mt-8">
+          <motion.div
+            key={index}
+            className="mt-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            variants={{
+              visible: { opacity: 1, y: -50 },
+              hidden: { opacity: 0, y: 0 },
+            }}
+          >
             <div className="flex items-center justify-center">
               <img
                 src={project.image}
@@ -57,13 +68,24 @@ const ProjectsMob = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
 
         <h2 className="text-white text-3xl font-bold px-5 mt-16">MERN Stack</h2>
         <div className="grid grid-cols-1 mt-16 justify-center">
           {MernStack.map((project, index) => (
-            <div key={index} className="mt-8">
+            <motion.div
+              key={index}
+              className="mt-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              variants={{
+                visible: { opacity: 1, y: -50 },
+                hidden: { opacity: 0, y: 0 },
+              }}
+            >
               <div className="flex items-center justify-center">
                 <img
                   src={project.image}
@@ -110,7 +132,7 @@ const ProjectsMob = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
