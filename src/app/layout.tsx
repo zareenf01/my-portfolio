@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SparklesCore
           className="absolute inset-0 z-0 pointer-events-none"
-          background="#000" // Adjust background color as needed
+          background="#000" 
           particleDensity={4}
           speed={4}
           minSize={1}
