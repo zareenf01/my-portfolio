@@ -25,7 +25,7 @@ function Skills() {
   return (
     <div className="px-5 md:px-28 0">
       <motion.h1
-        className="text-white font-semibold text-center text-4xl mt-24 md:mt-48"
+        className="text-white font-semibold text-center text-4xl mt-24 md:mt-32"
         initial="hidden"
         animate={controls}
         variants={slideInVariants}

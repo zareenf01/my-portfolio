@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SparklesCore } from "./components/ui/Sparkle";
+import { GridBackgroundDemo } from "./components/ui/GridBg";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-black h-screen px-5 md:px-20">
-      <body className={inter.className}>
+      {/* <body className={inter.className}>
         <SparklesCore
           className="absolute inset-0 z-0 pointer-events-none"
-          background="#000" 
+          background="#000"
           particleDensity={4}
           speed={4}
           minSize={1}
@@ -28,6 +29,18 @@ export default function RootLayout({
           particleColor="#ffffff"
         />
         <div className="relative z-10">{children}</div>
+      </body> */}
+      <body className={`${inter.className} bg-black min-h-screen relative`}>
+        <div className="fixed inset-0 z-0">
+          <GridBackgroundDemo />
+        </div>
+
+        {/* Main content wrapper */}
+        <div className="px-5 md:px-10 relative">
+          <div className="relative ">
+            <div className="relative z-10">{children}</div>
+          </div>
+        </div>
       </body>
     </html>
   );
