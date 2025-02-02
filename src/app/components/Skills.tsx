@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Backend_skill, Frontend_skill, Other_skills } from "./SkillInfo";
 import SkillData from "./SkillData";
+import { IconCloud } from "./ui/icon-cloud";
 
 const slideInVariants = {
   hidden: { y: "100%", opacity: 0 },
@@ -16,6 +17,12 @@ const slideInVariants = {
 function Skills() {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const allImage = [
+    ...Frontend_skill.map((skill) => skill.Image),
+    ...Backend_skill.map((skill) => skill.Image),
+    ...Other_skills.map((skill) => skill.Image),
+  ];
 
   React.useEffect(() => {
     if (inView) {
@@ -35,6 +42,10 @@ function Skills() {
         <div className="w-20 mx-auto h-2 bg-blue-500 rounded-full -rotate-6"></div>
         <div className="w-24 mx-auto h-2 bg-green-500 rounded-full -rotate-6"></div>
       </motion.h1>
+
+      {/* <div className="relative mt-32 flex mx-auto h-96 w-full aspect-square max-w-2xl  items-center justify-center overflow-hidden my-20 bg-transparent">
+        <IconCloud images={allImage} />
+      </div> */}
       <section
         id="skills"
         className="flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden py-10 md:py-14"

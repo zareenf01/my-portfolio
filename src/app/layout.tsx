@@ -17,25 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-black h-screen px-5 md:px-20">
-      {/* <body className={inter.className}>
-        <SparklesCore
-          className="absolute inset-0 z-0 pointer-events-none"
-          background="#000"
-          particleDensity={4}
-          speed={4}
-          minSize={1}
-          maxSize={3}
-          particleColor="#ffffff"
-        />
-        <div className="relative z-10">{children}</div>
-      </body> */}
-      <body className={`${inter.className} bg-black min-h-screen relative`}>
+    <html lang="en" className="dark h-screen px-5 md:px-20 bg-black">
+      <body
+        className={`${inter.className} dark:bg-background min-h-screen relative bg-black`}
+      >
         <div className="fixed inset-0 z-0">
           <GridBackgroundDemo />
         </div>
-
-        {/* Main content wrapper */}
         <div className="px-5 md:px-10 relative">
           <div className="relative ">
             <div className="relative z-10">{children}</div>
