@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SparklesCore } from "./components/ui/Sparkle";
 import { GridBackgroundDemo } from "./components/ui/GridBg";
@@ -26,7 +27,10 @@ export default function RootLayout({
         </div>
         <div className="px-5 md:px-10 relative">
           <div className="relative ">
-            <div className="relative z-10">{children}</div>
+            <div className="relative z-10">
+              {children}
+              <Analytics />
+            </div>
           </div>
         </div>
       </body>
