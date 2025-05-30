@@ -73,3 +73,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes spotlight-appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight-appear 2s ease-out forwards;
+}

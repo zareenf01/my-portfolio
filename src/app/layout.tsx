@@ -4,6 +4,18 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SparklesCore } from "./components/ui/Sparkle";
 import { GridBackgroundDemo } from "./components/ui/GridBg";
+import { FloatingDock } from "./components/ui/Dock";
+import { Spotlight } from "./components/ui/Spotlight";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandX,
+  IconCode,
+  IconExchange,
+  IconHome,
+  IconNewSection,
+  IconTerminal2,
+} from "@tabler/icons-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,21 +29,79 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const links = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+
+    {
+      title: "Projects",
+      icon: (
+        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#projects",
+    },
+    {
+      title: "skills",
+      icon: (
+        <IconCode className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#skills",
+    },
+    {
+      title: "LinkedIn",
+      icon: (
+        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://www.linkedin.com/in/zareen-fatima-476110244/",
+    },
+
+    {
+      title: "X",
+      icon: (
+        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://x.com/ZareenFatima01",
+    },
+    {
+      title: "GitHub",
+      icon: (
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://github.com/zareenf01",
+    },
+  ];
   return (
-    <html lang="en" className="dark h-screen px-5 md:px-20 bg-black">
+    <html
+      lang="en"
+      className="dark h-screen px-5 lg:px-20 bg-black scroll-smooth"
+    >
       <body
         className={`${inter.className} dark:bg-background min-h-screen relative bg-black`}
       >
-        <div className="fixed inset-0 z-0">
-          <GridBackgroundDemo />
-        </div>
-        <div className="px-5 md:px-10 relative">
+        <Spotlight
+          className="absolute md:-mt-60 md:-left-[500px] -left-[150px] "
+          fill="white"
+        />
+
+        <div className="px-5 md:px-10 relative bg-black">
           <div className="relative ">
             <div className="relative z-10">
               {children}
               <Analytics />
             </div>
           </div>
+        </div>
+        <div className="fixed bottom-4 right-14 md:right-0 md:left-1/2 -translate-x-1/2 z-50">
+          <FloatingDock
+            mobileClassName="absolute bottom-4"
+            desktopClassName="w-fit"
+            items={links}
+          />
         </div>
       </body>
     </html>

@@ -24,7 +24,7 @@ function Projects() {
     };
   }, []);
   return (
-    <div className="mt-28 p-5 sm:p-0">
+    <div className="mt-28 p-5 sm:p-0" id="projects">
       <motion.h2
         className="text-white text-4xl font-semibold text-center rotate-6"
         initial="hidden"

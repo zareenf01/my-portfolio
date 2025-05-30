@@ -5,7 +5,7 @@ export default function Navbar() {
         <h1 className="font-bold text-[#c76bec] text-5xl ">ZF</h1>
         <span className="font-bold text-white text-5xl">.</span>
       </div>
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         <a href="https://github.com/zareenf01" className="mx-2">
           <img
             width="40"
@@ -33,7 +33,7 @@ export default function Navbar() {
             alt="linkedin"
           />
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }
