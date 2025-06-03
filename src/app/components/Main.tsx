@@ -4,6 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { SparklesCore } from "./ui/Sparkle";
 import { AnimatedSpan, Terminal, TypingAnimation } from "./ui/Terminal";
+import { ShimmerButton } from "./ui/Button";
 const slideInVariants = {
   hidden: { x: "-5%", opacity: 0 },
   visible: {
@@ -41,6 +42,9 @@ export default function Main() {
             <TypeEffect />
           </span>
         </h1>
+        {/* <div className="">
+          <ShimmerButton>Contact me</ShimmerButton>
+        </div> */}
       </div>
 
       <div className="lg:mx-5 lg:max-w-md  md:block md:mx-auto mt-10 md:mt-20 lg:mt-0 max-w-xl w-full">

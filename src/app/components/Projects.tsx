@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from "react";
-import ProjectsMob from "./ProjectMob";
-import { ProjectHover } from "./ui/ProjectHover";
+import React from "react";
 import { motion } from "framer-motion";
-import { MernStack, data } from "./ProjectData";
+import { data } from "./ProjectData";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "../utils/cn";
 
 function Projects() {
-  const [isMobile, setIsMobile] = useState(false);
+  // Function to truncate text to approximately 4 lines (adjust character limit as needed)
+  const truncateDescription = (text: string, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + "...";
+  };
 
-  useEffect(() => {
-    const checkScreenWidth = () => {
-      setIsMobile(window.innerWidth <= 1100);
-    };
-
-    checkScreenWidth();
-    window.addEventListener("resize", checkScreenWidth);
-
-    return () => {
-      window.removeEventListener("resize", checkScreenWidth);
-    };
-  }, []);
   return (
-    <div className="mt-28 p-5 sm:p-0" id="projects">
-      <motion.h2
-        className="text-white text-4xl font-semibold text-center rotate-6"
+    <div className="mt-28 px-4 sm:px-6 lg:px-8 max-w-7xl -mx-5" id="projects">
+      <motion.div
+        className="text-center mb-16"
         initial="hidden"
         animate="visible"
         variants={{
@@ -35,121 +24,99 @@ function Projects() {
         }}
         transition={{ duration: 0.6 }}
       >
-        Projects
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">
+          Projects
+        </h2>
         <div className="w-20 mx-auto h-2 bg-green-500 rounded-full rotate-6"></div>
         <div className="w-24 mx-auto h-2 bg-blue-500 rounded-full rotate-6"></div>
-      </motion.h2>
+      </motion.div>
 
-      {isMobile ? (
-        <ProjectsMob />
-      ) : (
-        <>
-          <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 mt-16">
-            {data.map((project, index) => {
-              return (
-                <motion.div
-                  key={index}
-                  className={cn(
-                    "p-2 rounded-lg mt-16 w-full h-full cursor-pointer space-y-5"
-                  )}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  variants={{
-                    visible: { opacity: 1, y: -50 },
-                    hidden: { opacity: 0, y: 0 },
-                  }}
-                >
-                  <ProjectHover
-                    imageUrl={project.image}
-                    className="mx-3 w-full h-4/5 "
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10">
+        {data.map((project, index) => (
+          <motion.div
+            key={index}
+            className="group"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            variants={{
+              visible: { opacity: 1, y: 0, scale: 1 },
+              hidden: { opacity: 0, y: 30, scale: 0.95 },
+            }}
+          >
+            <div className="bg-gradient-to-br from-gray-900/80 via-black/60 to-gray-900/80 backdrop-blur-sm rounded-2xl overflow-hidden  border-purple-500/20 hover:border-purple-400/40 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 group-hover:scale-[1.02] h-[450px] flex flex-col">
+              {/* Image Container with Overlay */}
+              <div className="relative w-full h-48 overflow-hidden flex-shrink-0">
+                <Image
+                  src={project.image}
+                  alt={project.projectName}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                {/* Bottom shadow overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                {/* Hover overlay with links */}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <Link
+                    href={project.projectExternalLinks.github}
+                    className="p-3 bg-purple-500/20 backdrop-blur-sm rounded-full hover:bg-purple-400/30 border border-purple-400/30 hover:border-purple-300/50 transition-all duration-300 hover:scale-110"
                   >
-                    <h1 className="text-white font-bold flex items-center">
-                      {project.projectName}
-                      <Link
-                        href={project.projectExternalLinks.github}
-                        className="  ml-3"
-                      >
-                        <span className="p-1">
-                          <FiGithub size={25} />
-                        </span>
-                      </Link>
-                      <Link href={project.projectLink} className="ml-5">
-                        <span className="p-1">
-                          <FiExternalLink size={25} />
-                        </span>
-                      </Link>
-                    </h1>
-                    <div className="flex items-center -mt-3 gap-2">
-                      {project.projectTech.map((tech, idx) => (
-                        <h3 key={idx} className="text-[#a1a0a0] ">
-                          {tech}
-                        </h3>
-                      ))}
-                    </div>
-                  </ProjectHover>
-                </motion.div>
-              );
-            })}
-          </div>
+                    <FiGithub size={20} className="text-white" />
+                  </Link>
+                  <Link
+                    href={project.projectLink}
+                    className="p-3 bg-pink-500/20 backdrop-blur-sm rounded-full hover:bg-pink-400/30 border border-pink-400/30 hover:border-pink-300/50 transition-all duration-300 hover:scale-110"
+                  >
+                    <FiExternalLink size={20} className="text-white" />
+                  </Link>
+                </div>
+              </div>
 
-          <div className="mt-10">
-            <h2 className="text-white text-3xl text-bold px-5 ">MERN Stack</h2>
-            <div className="mt-10 ">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mt-10">
-                {MernStack.map((project, index) => {
-                  return (
-                    <motion.div
-                      key={index}
-                      className={cn(
-                        "p-2 rounded-lg mt-16 w-full h-full cursor-pointer space-y-5"
-                      )}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6 }}
-                      variants={{
-                        visible: { opacity: 1, y: -50 },
-                        hidden: { opacity: 0, y: 0 },
-                      }}
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all duration-300 line-clamp-1 flex-shrink-0">
+                    {project.projectName}
+                  </h3>
+                  <div className="flex gap-2 ml-2 opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0">
+                    <Link
+                      href={project.projectExternalLinks.github}
+                      className="p-1 hover:text-purple-400 transition-colors duration-300"
                     >
-                      <ProjectHover
-                        imageUrl={project.image}
-                        className="mx-3 w-full h-4/5 "
-                      >
-                        <h1 className="text-white font-bold flex items-center">
-                          {project.projectName}
-                          <Link
-                            href={project.projectExternalLinks.github}
-                            className="  ml-3"
-                          >
-                            <span className="p-1">
-                              <FiGithub size={25} />
-                            </span>
-                          </Link>
-                          <Link href={project.projectLink} className="ml-5">
-                            <span className="p-1">
-                              <FiExternalLink size={25} />
-                            </span>
-                          </Link>
-                        </h1>
-                        <div className="flex items-center -mt-3 gap-2">
-                          {project.projectTech.map((tech, idx) => (
-                            <h3 key={idx} className="text-[#a1a0a0] ">
-                              {tech}
-                            </h3>
-                          ))}
-                        </div>
-                      </ProjectHover>
-                    </motion.div>
-                  );
-                })}
+                      <FiGithub size={18} className="text-gray-300" />
+                    </Link>
+                    <Link
+                      href={project.projectLink}
+                      className="p-1 hover:text-pink-400 transition-colors duration-300"
+                    >
+                      <FiExternalLink size={18} className="text-gray-300" />
+                    </Link>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
+                  {truncateDescription(project.projectDescription)}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.projectTech.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1.5 bg-black/40 border border-purple-500/30 text-gray-300 rounded-lg text-xs font-medium hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400/50 hover:text-white transition-all duration-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </>
-      )}
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }

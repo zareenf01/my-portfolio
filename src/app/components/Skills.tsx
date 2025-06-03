@@ -3,8 +3,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Backend_skill, Frontend_skill, Other_skills } from "./SkillInfo";
 import SkillData from "./SkillData";
-import { IconCloud } from "./ui/icon-cloud";
-import { LampContainer } from "./ui/Lamp";
 
 const slideInVariants = {
   hidden: { y: "100%", opacity: 0 },
